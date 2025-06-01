@@ -1,103 +1,112 @@
-import Image from "next/image";
+"use client";
+
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Hero from "@/sections/Hero";
+import StoryBlock from "@/sections/StoryBlock";
+import CustomCursor from "@/components/CustomCursor";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import VantaBirdsBackground from "@/animations/VantaBirdsBackground";
+import ClickSpark from "@/animations/ClickSpark";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [panels, setPanels] = useState(0);
+  const component = useRef(null);
+  const horizontalSlider = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const panels = gsap.utils.toArray(".horizontal");
+      setPanels(panels);
+      gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: horizontalSlider.current,
+          pin: true,
+          scrub: 1,
+          snap: 1 / (panels.length - 1),
+          end: () =>
+            "+=" + (horizontalSlider.current.scrollWidth - window.innerWidth),
+        },
+      });
+    }, component);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1,
+      effects: true,
+    });
+
+    return () => ScrollSmoother.get()?.kill();
+  }, []);
+
+  return (
+    <>
+      <CustomCursor />
+      <VantaBirdsBackground />
+      <ClickSpark
+        sparkColor="#fff"
+        sparkSize={10}
+        sparkRadius={25}
+        sparkCount={8}
+        duration={400}
+      >
+        <div id="smooth-wrapper" className="overflow-hidden">
+          <div ref={component} className="relative z-10 " id="smooth-content">
+            <section className="text-white">
+              <Hero />
+            </section>
+
+            <div
+              ref={horizontalSlider}
+              className="flex h-screen"
+              style={{ width: `${panels * 100}vw` }}
+            >
+              <section className="horizontal w-screen h-full text-white flex-shrink-0">
+                <StoryBlock
+                  title="Discovery in the Desert"
+                  image={`https://picsum.photos/seed/picsum1/800/600`}
+                  content="In the vast stretches of the desert, visionaries uncovered what would change the world forever."
+                />
+              </section>
+              <section className="horizontal w-screen h-full text-white flex-shrink-0">
+                <StoryBlock
+                  title="The First Strike"
+                  image={`https://picsum.photos/seed/picsum2/800/600`}
+                  content="It wasn’t luck. It was years of determination and belief in possibility."
+                  flip
+                />
+              </section>
+              <section className="horizontal w-screen h-full text-white flex-shrink-0">
+                <StoryBlock
+                  title="Modern Impact"
+                  image={`https://picsum.photos/seed/picsum3/800/600`}
+                  content="From energy to innovation, the legacy continues to shape our future."
+                />
+              </section>
+            </div>
+
+            <section className="w-screen h-screen text-white flex items-center justify-center">
+              <p className="text-3xl px-10 text-center">legacy continues...</p>
+            </section>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </ClickSpark>
+    </>
   );
 }
