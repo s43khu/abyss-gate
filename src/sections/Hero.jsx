@@ -9,7 +9,6 @@ function GlitchText({ text, className }) {
   const [glitchedText, setGlitchedText] = useState(text);
   const original = useRef(text);
   const chars = '!@#$%^&*';
-  const { playGlitch, isAudioReady } = useSoundManager();
 
   useEffect(() => {
     const glitchInterval = setInterval(() => {
@@ -18,18 +17,9 @@ function GlitchText({ text, className }) {
         return Math.random() < 0.1 ? chars[Math.floor(Math.random() * chars.length)] : char;
       }).join('');
       setGlitchedText(newText);
-      
-      // Play glitch sound occasionally (only if audio is ready)
-      if (Math.random() < 0.3 && isAudioReady) {
-        try {
-          playGlitch();
-        } catch (error) {
-          // Ignore sound errors
-        }
-      }
     }, 500);
     return () => clearInterval(glitchInterval);
-  }, [playGlitch, isAudioReady]);
+  }, []);
 
   return (
     <motion.h1 
