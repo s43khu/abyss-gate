@@ -1,70 +1,93 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
-export default function VantaBirdsBackground() {
-  const vantaRef = useRef(null)
-  const [vantaEffect, setVantaEffect] = useState(null)
+export default function AuroraBackground() {
+  const canvasRef = useRef(null)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-    const loadScripts = async () => {
-      if (!window.THREE) {
-        await new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'
-          script.onload = resolve
-          script.onerror = reject
-          document.body.appendChild(script)
-        })
-      }
+    const ctx = canvas.getContext('2d')
+    let animationId
 
-      if (!window.VANTA || !window.VANTA.BIRDS) {
-        await new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js'
-          script.onload = resolve
-          script.onerror = reject
-          document.body.appendChild(script)
-        })
-      }
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
-      if (!vantaEffect && window.VANTA?.BIRDS) {
-        const effect = window.VANTA.BIRDS({
-          el: vantaRef.current,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 0.5,
-          scaleMobile: 1.0,
-          backgroundColor: 0x000000,
-          birdSize: 0.50,
-          separation: 60.00,
-          quantity: 3.00,
-          color1: 0xbba0b4,
-  color2: 0x138484,
-  colorMode: "lerp"
-        })
-        setVantaEffect(effect)
-      }
+    // Aurora colors - very subtle
+    const colors = [
+      { r: 0, g: 255, b: 255, a: 0.08 },    // Cyan
+      { r: 255, g: 0, b: 255, a: 0.05 },    // Magenta
+      { r: 0, g: 255, b: 127, a: 0.03 }     // Green
+    ]
+
+    // Aurora wave parameters
+    const waves = colors.map((color, index) => ({
+      color,
+      amplitude: 80 + index * 40,
+      frequency: 0.001 + index * 0.0005,
+      speed: 0.2 + index * 0.1,
+      offset: index * Math.PI / 3,
+      yOffset: 400 + index * 100
+    }))
+
+    let time = 0
+
+    const animate = () => {
+      time += 0.005
+      
+      // Clear canvas with black background
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Draw aurora waves
+      waves.forEach(wave => {
+        ctx.beginPath()
+        ctx.moveTo(0, canvas.height)
+
+        // Create wave path
+        for (let x = 0; x <= canvas.width; x += 3) {
+          const y = Math.sin(x * wave.frequency + time * wave.speed + wave.offset) * wave.amplitude + wave.yOffset
+          ctx.lineTo(x, y)
+        }
+
+        ctx.lineTo(canvas.width, canvas.height)
+        ctx.closePath()
+
+        // Create gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+        gradient.addColorStop(0, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, ${wave.color.a})`)
+        gradient.addColorStop(0.5, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, ${wave.color.a * 0.3})`)
+        gradient.addColorStop(1, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, 0)`)
+
+        ctx.fillStyle = gradient
+        ctx.fill()
+      })
+
+      animationId = requestAnimationFrame(animate)
     }
 
-    loadScripts()
+    animate()
 
     return () => {
-      if (vantaEffect && vantaEffect.destroy) {
-        vantaEffect.destroy()
+      window.removeEventListener('resize', resizeCanvas)
+      if (animationId) {
+        cancelAnimationFrame(animationId)
       }
     }
   }, [])
 
   return (
-    <div
-      ref={vantaRef}
-      className="fixed inset-0 -z-10 w-screen h-screen"
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
     />
   )
 }
