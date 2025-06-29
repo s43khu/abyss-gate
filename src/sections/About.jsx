@@ -48,7 +48,7 @@ export default function About() {
       title: "Blightvault",
       description: "Storage system - vault of corrupted and rare assets from the depths of the abyss.",
       color: "from-orange-400 to-red-500",
-      status: "coming-soon"
+      status: "launched"
     },
     {
       icon: <Globe className="w-8 h-8" />,
@@ -76,7 +76,7 @@ export default function About() {
       title: "Demonpipe",
       description: "Data pipelines - cursed data flows across services in the forbidden realm.",
       color: "from-red-400 to-pink-500",
-      status: "coming-soon"
+      status: "launched"
     },
     {
       icon: <Palette className="w-8 h-8" />,
@@ -182,6 +182,15 @@ export default function About() {
                   <div className="absolute top-4 right-4">
                     <div className="px-2 py-1 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-full">
                       <span className="text-xs text-purple-400 font-medium">Coming Soon</span>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Launched Badge */}
+                {feature.status === 'launched' && (
+                  <div className="absolute top-4 right-4">
+                    <div className="px-2 py-1 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full">
+                      <span className="text-xs text-green-400 font-medium">Launched</span>
                     </div>
                   </div>
                 )}
