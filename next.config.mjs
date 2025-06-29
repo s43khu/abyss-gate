@@ -11,7 +11,6 @@ const nextConfig = {
 
   // Optimize bundle
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 
