@@ -14,6 +14,9 @@ import { SoundProvider } from "@/components/SoundManager";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import AuroraBackground from "@/animations/VantaBirdsBackground";
 import ClickSpark from "@/animations/ClickSpark";
+import Blightvault from "@/components/Blightvault";
+import Demonpipe from "@/components/Demonpipe";
+import AbyssKeeper from "@/components/AbyssKeeper";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -116,6 +119,9 @@ export default function Home() {
         <Navbar />
         <AuroraBackground />
 
+        {/* Abyss Keeper (Overlay) - Outside ScrollSmoother */}
+        <AbyssKeeper />
+
         <ClickSpark
           sparkColor="#fff"
           sparkSize={10}
@@ -140,8 +146,8 @@ export default function Home() {
                   <section className="horizontal w-screen h-full text-white flex-shrink-0">
                     <StoryBlock
                       title="The Discovery"
-                      image={`https://picsum.photos/seed/abyss1/1200/800`}
-                      content="Deep within the digital realm, a team of visionary developers discovered the gateway to infinite possibilities. This wasn't just another project - it was the beginning of a new era in web development, where creativity meets cutting-edge technology."
+                      image={`https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1200&h=800&fit=crop&crop=center`}
+                      content="Deep within the digital realm, I discovered the forbidden gateway - the AbyssGate. This wasn't just another coding project - it was the beginning of my pact with the abyss, where cursed relics and bound souls would power the future of digital experiences."
                       year="2023"
                       category="Discovery"
                     />
@@ -149,8 +155,8 @@ export default function Home() {
                   <section className="horizontal w-screen h-full text-white flex-shrink-0">
                     <StoryBlock
                       title="The Breakthrough"
-                      image={`https://picsum.photos/seed/abyss2/1200/800`}
-                      content="Months of experimentation led to the breakthrough that would change everything. Advanced animations, seamless interactions, and immersive experiences became reality. The AbyssGate was no longer just a concept - it was a living, breathing digital experience."
+                      image={`https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=800&fit=crop&crop=center`}
+                      content="Months of relentless coding and experimentation led to breakthroughs in the forbidden arts of web development. Advanced animations, seamless interactions, and immersive experiences became reality through my pact with the abyss."
                       flip
                       year="2024"
                       category="Innovation"
@@ -159,8 +165,8 @@ export default function Home() {
                   <section className="horizontal w-screen h-full text-white flex-shrink-0">
                     <StoryBlock
                       title="The Legacy"
-                      image={`https://picsum.photos/seed/abyss3/1200/800`}
-                      content="Today, AbyssGate stands as a testament to what's possible when passion meets technology. Every scroll, every animation, every interaction tells a story of innovation and dedication. The legacy continues to inspire the next generation of digital creators."
+                      image={`https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop&crop=center`}
+                      content="Today, AbyssGate stands as a testament to my growth as a developer and what's possible with modern web technologies. Every scroll, every animation, every interaction demonstrates my technical skills and creative vision while embracing the dark aesthetic of cursed relics and eternal pacts."
                       year="2024"
                       category="Legacy"
                     />
@@ -171,19 +177,30 @@ export default function Home() {
               {/* About Section */}
               <About />
 
+              {/* Blightvault Section */}
+              <section id="blightvault">
+                <Blightvault />
+              </section>
+
+              {/* Demonpipe Section */}
+              <section id="demonpipe">
+                <Demonpipe />
+              </section>
+
               {/* Contact Section */}
               <Contact />
 
               {/* Footer */}
-              <section className="w-screen min-h-screen text-white flex items-center justify-center">
+              <section className="w-screen py-20 text-white flex items-center justify-center relative">
                 <div className="text-center space-y-8">
                   <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                    Legacy Continues...
+                    Enter the Abyss, Exit Immortal
                   </h2>
                   <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                    The journey never ends. Every discovery leads to new
-                    possibilities, every innovation opens new doors. The future
-                    is waiting to be written.
+                    The journey through the forbidden realm never ends. Every
+                    discovery leads to new possibilities, every innovation opens
+                    new doors to cursed knowledge. The future awaits those brave
+                    enough to cross the AbyssGate.
                   </p>
                   <div className="flex justify-center space-x-4">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
@@ -195,6 +212,27 @@ export default function Home() {
                       className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"
                       style={{ animationDelay: "0.4s" }}
                     ></div>
+                  </div>
+                </div>
+
+                {/* Signature */}
+                <div className="absolute bottom-8 left-8 text-left">
+                  <div className="bg-gradient-to-r from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4">
+                    <p className="text-sm text-gray-400 mb-1">
+                      Made with cursed relics by
+                    </p>
+                    <p className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                      Shekhu
+                    </p>
+
+                    <a
+                      href="https://github.com/s43khu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+                    >
+                      github.com/s43khu
+                    </a>
                   </div>
                 </div>
               </section>

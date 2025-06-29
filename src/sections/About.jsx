@@ -24,63 +24,73 @@ export default function About() {
   const features = [
     {
       icon: <Code className="w-8 h-8" />,
-      title: "Advanced Animations",
-      description: "Powered by GSAP and Framer Motion, creating seamless transitions and breathtaking visual effects that push the boundaries of web animation.",
-      color: "from-cyan-400 to-blue-500"
+      title: "Soulgate",
+      description: "Auth system and onboarding - the first layer of identity where souls are keys to the forbidden realm.",
+      color: "from-cyan-400 to-blue-500",
+      status: "coming-soon"
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Real-time Interactions",
-      description: "Every click, scroll, and hover triggers dynamic responses with custom sound effects and visual feedback for an immersive experience.",
-      color: "from-purple-400 to-pink-500"
+      title: "Riftpass",
+      description: "NFT Pass System - access rights and cursed tickets to traverse the abyss.",
+      color: "from-purple-400 to-pink-500",
+      status: "coming-soon"
     },
     {
       icon: <Cpu className="w-8 h-8" />,
-      title: "Performance Optimized",
-      description: "Built with Next.js 14 and React 19, utilizing cutting-edge technologies for lightning-fast loading and smooth performance across all devices.",
-      color: "from-green-400 to-emerald-500"
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "3D Visualizations",
-      description: "Three.js and Vanta.js powered backgrounds create stunning 3D environments that respond to user interaction and device capabilities.",
-      color: "from-orange-400 to-red-500"
-    },
-    {
-      icon: <Palette className="w-8 h-8" />,
-      title: "Modern Design System",
-      description: "Tailwind CSS framework with custom animations and a cohesive design language that adapts seamlessly across all screen sizes.",
-      color: "from-indigo-400 to-purple-500"
-    },
-    {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: "Responsive Excellence",
-      description: "Mobile-first approach ensures perfect functionality and visual appeal on smartphones, tablets, and desktop computers.",
-      color: "from-teal-400 to-cyan-500"
+      title: "Cursechain",
+      description: "Blockchain and transaction layer - the main transaction layer powered by cursed relics.",
+      color: "from-green-400 to-emerald-500",
+      status: "coming-soon"
     },
     {
       icon: <Database className="w-8 h-8" />,
-      title: "Scalable Architecture",
-      description: "Modular component structure with clean code practices, making it easy to extend, maintain, and deploy across different environments.",
-      color: "from-yellow-400 to-orange-500"
+      title: "Blightvault",
+      description: "Storage system - vault of corrupted and rare assets from the depths of the abyss.",
+      color: "from-orange-400 to-red-500",
+      status: "coming-soon"
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Voidlink",
+      description: "Bridging infrastructure - portal connections across realms and chains.",
+      color: "from-indigo-400 to-purple-500",
+      status: "coming-soon"
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "Security First",
-      description: "Built with security best practices, ensuring data protection and safe user interactions in the digital realm.",
-      color: "from-red-400 to-pink-500"
-    },
-    {
-      icon: <Rocket className="w-8 h-8" />,
-      title: "Future Ready",
-      description: "Designed to evolve with emerging technologies, ready to integrate AI, WebGL, and next-generation web standards.",
-      color: "from-violet-400 to-purple-500"
+      title: "Pact",
+      description: "Smart contracts - where contracts are deals with the abyss itself.",
+      color: "from-teal-400 to-cyan-500",
+      status: "coming-soon"
     },
     {
       icon: <Eye className="w-8 h-8" />,
-      title: "Immersive UX",
-      description: "Custom cursor effects, scroll animations, and interactive elements create a truly engaging user experience that captivates visitors.",
-      color: "from-emerald-400 to-teal-500"
+      title: "Wraithnode",
+      description: "Validators and nodes - shadow watchers maintaining the realm's integrity.",
+      color: "from-yellow-400 to-orange-500",
+      status: "coming-soon"
+    },
+    {
+      icon: <Rocket className="w-8 h-8" />,
+      title: "Demonpipe",
+      description: "Data pipelines - cursed data flows across services in the forbidden realm.",
+      color: "from-red-400 to-pink-500",
+      status: "coming-soon"
+    },
+    {
+      icon: <Palette className="w-8 h-8" />,
+      title: "Obelisk",
+      description: "Contract registry and governance - ancient ledger storing forbidden knowledge.",
+      color: "from-violet-400 to-purple-500",
+      status: "coming-soon"
+    },
+    {
+      icon: <Smartphone className="w-8 h-8" />,
+      title: "Necrohub",
+      description: "Admin and control center - central cursed dashboard for developers and admins.",
+      color: "from-emerald-400 to-teal-500",
+      status: "coming-soon"
     }
   ]
 
@@ -95,11 +105,11 @@ export default function About() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            About AbyssGate
+            The AbyssGate Ecosystem
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            A cutting-edge web experience that pushes the boundaries of digital innovation. 
-            Built with passion, powered by technology, designed for the future.
+            A realm powered by cursed relics, bound souls, and eternal pacts. 
+            Cross the forbidden and discover the future of digital experiences.
           </p>
         </motion.div>
 
@@ -112,12 +122,12 @@ export default function About() {
         >
           <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-8 md:p-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Our Mission
+              The Forbidden Pact
             </h3>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
               To create digital experiences that transcend the ordinary, where every interaction tells a story 
-              and every animation serves a purpose. We believe in the power of technology to inspire, 
-              connect, and transform the way we experience the web.
+              of the forbidden realm. I believe in the power of technology to inspire, 
+              connect, and transform the way I experience the web through cursed relics and eternal pacts.
             </p>
           </div>
         </motion.div>
@@ -142,7 +152,21 @@ export default function About() {
               onMouseEnter={playHover}
               className="group relative"
             >
-              <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 h-full transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20">
+              <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 h-full transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 relative overflow-hidden">
+                {/* Coming Soon Overlay */}
+                {feature.status === 'coming-soon' && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-cyan-900/20 backdrop-blur-sm flex items-center justify-center z-10">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                        Coming Soon
+                      </div>
+                      <div className="text-xs text-gray-400 animate-pulse">
+                        The abyss awaits...
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${feature.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   {feature.icon}
                 </div>
@@ -152,6 +176,15 @@ export default function About() {
                 <p className="text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
+                
+                {/* Status Badge */}
+                {feature.status === 'coming-soon' && (
+                  <div className="absolute top-4 right-4">
+                    <div className="px-2 py-1 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-full">
+                      <span className="text-xs text-purple-400 font-medium">Coming Soon</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
@@ -165,8 +198,11 @@ export default function About() {
           className="mt-20 text-center"
         >
           <h3 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            Technology Stack
+            The Grimoire
           </h3>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Ancient knowledge and forbidden technologies that power the AbyssGate realm
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
               'Next.js 14', 'React 19', 'GSAP', 'Framer Motion', 'Three.js', 'Tailwind CSS',
@@ -198,11 +234,11 @@ export default function About() {
         >
           <div className="bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Ready to Experience the Future?
+              Ready to Cross the Forbidden?
             </h3>
             <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              Join us in exploring the endless possibilities of modern web development. 
-              Every scroll, every interaction, every moment is crafted with precision and passion.
+              Join me in exploring the endless possibilities of the AbyssGate realm. 
+              Every scroll, every interaction, every moment is crafted with precision and passion for the forbidden arts.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
