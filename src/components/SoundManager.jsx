@@ -189,9 +189,9 @@ function SoundControls() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
+      initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
-      className="fixed bottom-6 right-6 z-50 flex items-center space-x-3 bg-black/80 backdrop-blur-md rounded-full px-4 py-2 border border-white/10"
+      className="fixed bottom-6 left-6 z-50 flex items-center space-x-3 bg-black/80 backdrop-blur-md rounded-full px-4 py-2 border border-white/10"
     >
       <motion.button
         whileHover={{ scale: 1.1 }}

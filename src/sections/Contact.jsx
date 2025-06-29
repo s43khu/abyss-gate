@@ -34,8 +34,8 @@ export default function Contact() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "hello@abyssgate.dev",
-      description: "Send us a message anytime",
+      value: "s43khu@gmail.com",
+      description: "Send me a message anytime",
       color: "from-cyan-400 to-blue-500"
     },
     {
@@ -56,7 +56,7 @@ export default function Contact() {
       icon: <Clock className="w-6 h-6" />,
       title: "Response Time",
       value: "< 24 hours",
-      description: "We'll get back to you quickly",
+      description: "I'll get back to you quickly",
       color: "from-orange-400 to-red-500"
     }
   ]
@@ -65,19 +65,19 @@ export default function Contact() {
     {
       icon: <Github className="w-6 h-6" />,
       name: "GitHub",
-      url: "https://github.com/abyssgate",
+      url: "https://github.com/s43khu",
       color: "from-gray-400 to-gray-600"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       name: "LinkedIn",
-      url: "https://linkedin.com/company/abyssgate",
+      url: "https://linkedin.com/in/s43khu",
       color: "from-blue-400 to-blue-600"
     },
     {
       icon: <Twitter className="w-6 h-6" />,
       name: "Twitter",
-      url: "https://twitter.com/abyssgate",
+      url: "https://twitter.com/s43khu",
       color: "from-cyan-400 to-blue-500"
     },
     {
@@ -107,7 +107,7 @@ export default function Contact() {
     setFormData({ name: '', email: '', subject: '', message: '' })
     
     // Show success message (you can implement a toast notification here)
-    alert('Message sent successfully! We\'ll get back to you soon.')
+    alert('Message sent successfully! I\'ll get back to you soon.')
   }
 
   return (
@@ -121,11 +121,11 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Get In Touch
+            Where the Cursed Trade
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Ready to bring your digital vision to life? Let's create something extraordinary together. 
-            Every project starts with a conversation.
+            Ready to make a pact with the abyss? Let's create something extraordinary together. 
+            Every project starts with a conversation in the forbidden realm.
           </p>
         </motion.div>
 
@@ -174,7 +174,7 @@ export default function Contact() {
           >
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Send a Message
+                Send a Pact
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -235,7 +235,7 @@ export default function Contact() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 resize-none"
-                    placeholder="Tell us about your project..."
+                    placeholder="Tell me about your project..."
                   />
                 </div>
                 
@@ -273,7 +273,7 @@ export default function Contact() {
             {/* Why Choose Us */}
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Why Choose AbyssGate?
+                Why Choose the Abyss?
               </h3>
               <div className="space-y-4">
                 {[
@@ -309,7 +309,7 @@ export default function Contact() {
             {/* Social Links */}
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Connect With Us
+                Connect With the Abyss
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {socialLinks.map((social, index) => (
@@ -337,7 +337,7 @@ export default function Contact() {
             {/* Quick Stats */}
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                Our Impact
+                My Impact
               </h3>
               <div className="grid grid-cols-2 gap-6">
                 {[

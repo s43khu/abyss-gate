@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown, Home, BookOpen, User, Mail } from 'lucide-react'
+import { Menu, X, ChevronDown, Home, BookOpen, User, Mail, Database, Wifi } from 'lucide-react'
 import { useSoundManager } from './SoundManager'
 
 export default function Navbar() {
@@ -17,6 +17,8 @@ export default function Navbar() {
     { name: 'Home', href: '#home', id: 'home', icon: <Home className="w-5 h-5" /> },
     { name: 'Story', href: '#story', id: 'story', icon: <BookOpen className="w-5 h-5" /> },
     { name: 'About', href: '#about', id: 'about', icon: <User className="w-5 h-5" /> },
+    { name: 'Blightvault', href: '#blightvault', id: 'blightvault', icon: <Database className="w-5 h-5" /> },
+    { name: 'Demonpipe', href: '#demonpipe', id: 'demonpipe', icon: <Wifi className="w-5 h-5" /> },
     { name: 'Contact', href: '#contact', id: 'contact', icon: <Mail className="w-5 h-5" /> }
   ]
 

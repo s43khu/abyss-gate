@@ -9,16 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^1.10.0",
     "framer-motion": "^12.15.0",
     "gsap": "^3.13.0",
     "locomotive-scroll": "^4.1.4",
+    "lucide-react": "^0.400.0",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intersection-observer": "^9.16.0",
     "three": "^0.177.0",
-    "vanta": "^0.5.24",
-    "lucide-react": "^0.400.0"
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

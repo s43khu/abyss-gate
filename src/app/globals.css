@@ -35,6 +35,30 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: none;
 }
 
+/* Hide all scrollbars throughout the app */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Specific scrollbar hiding for components */
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-y-scroll::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-y-auto,
+.overflow-y-scroll,
+.overflow-auto {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
