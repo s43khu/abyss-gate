@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useSoundManager } from '@/components/SoundManager'
 import { ArrowRight, Calendar, Tag, Sparkles, Zap, Eye } from 'lucide-react'
@@ -9,6 +9,7 @@ export default function StoryBlock({ title, image, content, year, category, flip
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const { playHover, playClick } = useSoundManager()
+  const [expanded, setExpanded] = useState(false)
 
   // Enhanced content with AbyssGate lore theme
   const enhancedContent = {
@@ -54,6 +55,8 @@ As the digital landscape continues to evolve, AbyssGate will remain a beacon of 
   }
 
   const currentContent = enhancedContent[title] || content
+  const paragraphs = currentContent.split('\n\n')
+  const shortContent = paragraphs[0]
 
   return (
     <div className="w-full h-full relative overflow-hidden">
@@ -68,98 +71,109 @@ As the digital landscape continues to evolve, AbyssGate will remain a beacon of 
               transition={{ duration: 0.8 }}
               className={`space-y-6 ${flip ? 'lg:col-start-2' : ''}`}
             >
-              {/* Category Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm border border-cyan-500/30 rounded-full"
-              >
-                <Tag className="w-3 h-3 text-cyan-400" />
-                <span className="text-xs font-medium text-cyan-400">{category}</span>
-              </motion.div>
-
-              {/* Title */}
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight"
-              >
-                {title}
-              </motion.h2>
-
-              {/* Year Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex items-center space-x-2 text-gray-400"
-              >
-                <Calendar className="w-4 h-4" />
-                <span className="text-sm font-medium">{year}</span>
-              </motion.div>
-
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="space-y-4"
-              >
-                <div className="text-base md:text-lg text-gray-300 leading-relaxed space-y-3">
-                  {currentContent.split('\n\n').slice(0, 3).map((paragraph, index) => (
-                    <p key={index} className="text-gray-300 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Call to Action */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex items-center space-x-4"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onMouseEnter={playHover}
-                  onClick={playClick}
-                  className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 text-sm"
+              {/* Card Container */}
+              <div className="bg-black/70 rounded-2xl shadow-xl p-6 md:p-8 border border-gray-700/40 max-h-[420px] md:max-h-[480px] overflow-y-auto">
+                {/* Category Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="inline-flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm border border-cyan-500/30 rounded-full mb-2"
                 >
-                  <span>Explore More</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-                
-                <div className="flex items-center space-x-2 text-gray-400">
-                  <Sparkles className="w-3 h-3" />
-                  <span className="text-xs">Innovation</span>
-                </div>
-              </motion.div>
+                  <Tag className="w-3 h-3 text-cyan-400" />
+                  <span className="text-xs font-medium text-cyan-400">{category}</span>
+                </motion.div>
 
-              {/* Feature Highlights */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="grid grid-cols-2 gap-3"
-              >
-                {[
-                  { icon: <Zap className="w-4 h-4" />, label: "Performance" },
-                  { icon: <Eye className="w-4 h-4" />, label: "Visual Effects" }
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-2 text-gray-400">
-                    <div className="text-cyan-400">{feature.icon}</div>
-                    <span className="text-xs font-medium">{feature.label}</span>
+                {/* Title */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight mb-2"
+                >
+                  {title}
+                </motion.h2>
+
+                {/* Year Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="flex items-center space-x-2 text-gray-400 mb-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span className="text-xs font-medium">{year}</span>
+                </motion.div>
+
+                {/* Content */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="space-y-3"
+                >
+                  <div className="text-sm md:text-base text-gray-300 leading-relaxed space-y-2">
+                    {expanded
+                      ? paragraphs.map((paragraph, index) => (
+                          <p key={index} className="text-gray-300 leading-relaxed">{paragraph}</p>
+                        ))
+                      : <p className="text-gray-300 leading-relaxed">{shortContent}</p>
+                    }
                   </div>
-                ))}
-              </motion.div>
+                  {paragraphs.length > 1 && (
+                    <button
+                      className="mt-2 text-xs text-cyan-400 hover:underline focus:outline-none"
+                      onClick={() => setExpanded((v) => !v)}
+                    >
+                      {expanded ? 'Show Less' : 'Read More'}
+                    </button>
+                  )}
+                </motion.div>
+
+                {/* Call to Action */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="flex items-center space-x-4 mt-4"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onMouseEnter={playHover}
+                    onClick={playClick}
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 text-xs md:text-sm"
+                  >
+                    <span>Explore More</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.button>
+                  <div className="flex items-center space-x-2 text-gray-400">
+                    <Sparkles className="w-3 h-3" />
+                    <span className="text-xs">Innovation</span>
+                  </div>
+                </motion.div>
+
+                {/* Feature Highlights */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="grid grid-cols-2 gap-3 mt-3"
+                >
+                  {[
+                    { icon: <Zap className="w-4 h-4" />, label: "Performance" },
+                    { icon: <Eye className="w-4 h-4" />, label: "Visual Effects" }
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-center space-x-2 text-gray-400">
+                      <div className="text-cyan-400">{feature.icon}</div>
+                      <span className="text-xs font-medium">{feature.label}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
             </motion.div>
 
-            {/* Image */}
+            {/* Image with Pixel Card Effect */}
             <motion.div
               initial={{ opacity: 0, x: flip ? -50 : 50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -167,21 +181,18 @@ As the digital landscape continues to evolve, AbyssGate will remain a beacon of 
               className={`relative ${flip ? 'lg:col-start-1' : ''}`}
             >
               <div className="relative group">
-                {/* Image Container */}
-                <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-sm border border-gray-700/50">
+                <div className="relative overflow-hidden rounded-xl border-4 border-dashed border-cyan-400 group-hover:border-pink-500 transition-all duration-300 shadow-lg">
                   <img
                     src={image}
                     alt={title}
-                    className="w-full h-80 md:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-80 md:h-96 object-cover transition-transform duration-700 group-hover:scale-105 group-hover:blur-[1.5px]"
+                    style={{ imageRendering: 'pixelated' }}
                   />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                  {/* Animated Overlay */}
+                  <div className="absolute inset-0 pointer-events-none animate-pulse bg-gradient-to-br from-cyan-400/10 via-transparent to-pink-500/10 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Pixel border effect */}
+                  <div className="absolute inset-0 border-2 border-dotted border-cyan-300 rounded-xl pointer-events-none animate-[pulse_2s_infinite]" />
                 </div>
-
                 {/* Floating Elements */}
                 <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
                 <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
