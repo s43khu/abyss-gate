@@ -215,16 +215,15 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Signature */}
-                <div className="absolute bottom-8 left-8 text-left">
-                  <div className="bg-gradient-to-r from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4">
+                {/* Signature - now centered at bottom */}
+                <div className="w-full flex justify-center absolute left-0 right-0 bottom-8">
+                  <div className="bg-gradient-to-r from-gray-900/50 to-black/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 mx-auto">
                     <p className="text-sm text-gray-400 mb-1">
                       Made with cursed relics by
                     </p>
                     <p className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                       Shekhu
                     </p>
-
                     <a
                       href="https://github.com/s43khu"
                       target="_blank"
