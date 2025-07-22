@@ -29,7 +29,7 @@ export default function AbyssKeeper() {
     {
       id: 1,
       role: 'assistant',
-      content: 'Greetings, mortal. I am the Abyss Keeper, guardian of forbidden knowledge. What secrets do you seek from the depths?',
+      content: 'Hey! trash. I am the Abyss Keeper, guardian of forbidden knowledge. What the f.. brings you here?',
       timestamp: new Date().toISOString()
     }
   ])
