@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useSoundManager } from '@/components/SoundManager'
 import { 
   Mail, 
@@ -29,6 +29,12 @@ export default function Contact() {
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // NOTE: Parallax effect setup
+  const parallaxRef = useRef(null)
+  const { scrollY } = useScroll({ target: parallaxRef })
+  // Parallax y offset for the image
+  const y = useTransform(scrollY, [0, 300], [0, 80])
 
   const contactInfo = [
     {
@@ -112,6 +118,19 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="min-h-screen text-white py-20 relative overflow-hidden">
+      {/* NOTE: Parallax dummy image background */}
+      <motion.div
+        ref={parallaxRef}
+        style={{ y }}
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&h=800&fit=crop&crop=center"
+          alt="Parallax Dummy"
+          className="w-full h-full object-cover opacity-30"
+        />
+      </motion.div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div

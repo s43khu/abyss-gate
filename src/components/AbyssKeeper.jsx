@@ -38,6 +38,7 @@ export default function AbyssKeeper() {
   const [copiedId, setCopiedId] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
+  const [nsfwEnabled, setNsfwEnabled] = useState(false);
   
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
@@ -92,7 +93,8 @@ export default function AbyssKeeper() {
         },
         body: JSON.stringify({
           message: inputMessage,
-          conversationHistory
+          conversationHistory,
+          nsfwEnabled
         }),
       })
 
@@ -153,18 +155,34 @@ export default function AbyssKeeper() {
       {/* Floating Assistant Button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(true)}
-            onMouseEnter={playHover}
-            className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-2xl shadow-purple-500/30 flex items-center justify-center text-white hover:shadow-purple-500/50 transition-all duration-300"
-          >
-            <Bot className="w-8 h-8" />
-          </motion.button>
+          <div className="fixed bottom-6 right-6 z-[9999] flex items-center space-x-3">
+            {/* NOTE: Floating bot button */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(true)}
+              onMouseEnter={playHover}
+              className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-2xl shadow-purple-500/30 flex items-center justify-center text-white hover:shadow-purple-500/50 transition-all duration-300"
+            >
+              <Bot className="w-8 h-8" />
+            </motion.button>
+            {/* NOTE: Signature next to bot icon */}
+            <div className="bg-gradient-to-r from-gray-900/70 to-black/70 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-2 flex flex-col items-start">
+              <span className="text-xs text-gray-400 mb-1">Made with cursed relics by</span>
+              <span className="text-base font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Shekhu</span>
+              <a
+                href="https://github.com/s43khu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+              >
+                github.com/s43khu
+              </a>
+            </div>
+          </div>
         )}
       </AnimatePresence>
 
@@ -201,6 +219,7 @@ export default function AbyssKeeper() {
                 >
                   <RefreshCw className="w-4 h-4" />
                 </button>
+              
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
                   className="p-2 text-gray-400 hover:text-white transition-colors duration-300"
@@ -220,7 +239,7 @@ export default function AbyssKeeper() {
 
             {/* Content */}
             <AnimatePresence>
-              {!isMinimized && (
+              {!isMinimized ? (
                 <motion.div
                   initial={{ height: 0 }}
                   animate={{ height: "auto" }}
@@ -343,6 +362,56 @@ export default function AbyssKeeper() {
                     </div>
                   </div>
                 </motion.div>
+              ) : (
+                <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                exit={{ height: 0 }}
+                className="flex-1 flex flex-col min-h-0 p-2"
+              >
+                <div className="flex flex-col items-center justify-center h-full gap-2">
+                  {!nsfwEnabled ? (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="text-xs text-red-400/80 bg-black/30 px-3 py-1 rounded-lg border border-red-400/30 mb-2 text-center"
+                    >
+                      Beware mortal! Unchaining the Keeper may bleed your eyes...
+                    </motion.div>
+                  ): 
+                  <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="text-xs text-yellow-400/80 bg-black/30 px-3 py-1 rounded-lg border border-yellow-400/30 mb-2 text-center"
+                >
+                  Talk at your own risk.
+                </motion.div>
+                  }
+                  <button
+                    onClick={() => setNsfwEnabled(!nsfwEnabled)}
+                    className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-300 ${
+                      nsfwEnabled 
+                        ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30'
+                        : 'bg-gray-700/50 text-gray-400 hover:bg-gray-600/50 border border-gray-600/30'
+                    }`}
+                    onMouseEnter={playHover}
+                  >
+                    {nsfwEnabled ? (
+                      <>
+                        <AlertCircle className="w-4 h-4" />
+                        <span className="text-sm">Chain the Keeper</span>
+                      </>
+                    ) : (
+                      <>
+                        <Brain className="w-4 h-4" />
+                        <span className="text-sm">Unchain the Keeper</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </motion.div>
               )}
             </AnimatePresence>
           </motion.div>
