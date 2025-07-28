@@ -170,7 +170,7 @@ export default function AbyssKeeper() {
               <Bot className="w-8 h-8" />
             </motion.button>
             {/* NOTE: Signature next to bot icon */}
-            {/* <div className="bg-gradient-to-r from-gray-900/70 to-black/70 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-2 flex flex-col items-start">
+            <div className="bg-gradient-to-r from-gray-900/70 to-black/70 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-2 flex flex-col items-start">
               <span className="text-xs text-gray-400 mb-1">Made with cursed relics by</span>
               <span className="text-base font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Shekhu</span>
               <a
@@ -181,7 +181,7 @@ export default function AbyssKeeper() {
               >
                 github.com/s43khu
               </a>
-            </div> */}
+            </div>
           </div>
         )}
       </AnimatePresence>
