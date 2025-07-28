@@ -155,34 +155,35 @@ export default function AbyssKeeper() {
       {/* Floating Assistant Button */}
       <AnimatePresence>
         {!isOpen && (
-          <div className="fixed bottom-6 right-6 z-[9999] flex items-center space-x-3">
-            {/* NOTE: Floating bot button */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsOpen(true)}
-              onMouseEnter={playHover}
-              className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-2xl shadow-purple-500/30 flex items-center justify-center text-white hover:shadow-purple-500/50 transition-all duration-300"
-            >
-              <Bot className="w-8 h-8" />
-            </motion.button>
-            {/* NOTE: Signature next to bot icon */}
-            <div className="bg-gradient-to-r from-gray-900/70 to-black/70 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-2 flex flex-col items-start">
-              <span className="text-xs text-gray-400 mb-1">Made with cursed relics by</span>
-              <span className="text-base font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Shekhu</span>
-              <a
-                href="https://github.com/s43khu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
-              >
-                github.com/s43khu
-              </a>
-            </div>
-          </div>
+          // <div className="fixed bottom-6 right-6 z-[9999] flex items-center space-x-3">
+          //   {/* NOTE: Floating bot button */}
+          //   <motion.button
+          //     initial={{ opacity: 0, scale: 0 }}
+          //     animate={{ opacity: 1, scale: 1 }}
+          //     exit={{ opacity: 0, scale: 0 }}
+          //     whileHover={{ scale: 1.1 }}
+          //     whileTap={{ scale: 0.9 }}
+          //     onClick={() => setIsOpen(true)}
+          //     onMouseEnter={playHover}
+          //     className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-2xl shadow-purple-500/30 flex items-center justify-center text-white hover:shadow-purple-500/50 transition-all duration-300"
+          //   >
+          //     <Bot className="w-8 h-8" />
+          //   </motion.button>
+          //   {/* NOTE: Signature next to bot icon */}
+          //   <div className="bg-gradient-to-r from-gray-900/70 to-black/70 backdrop-blur-sm border border-gray-700/50 rounded-xl px-4 py-2 flex flex-col items-start">
+          //     <span className="text-xs text-gray-400 mb-1">Made with cursed relics by</span>
+          //     <span className="text-base font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Shekhu</span>
+          //     <a
+          //       href="https://github.com/s43khu"
+          //       target="_blank"
+          //       rel="noopener noreferrer"
+          //       className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+          //     >
+          //       github.com/s43khu
+          //     </a>
+          //   </div>
+          // </div>
+          <></>
         )}
       </AnimatePresence>
 
